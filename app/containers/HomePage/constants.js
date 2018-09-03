@@ -1,0 +1,1 @@
+export const SUBMIT_SECRET = 'secretkeeper/app/HomePage/SUBMIT_SECRET';
