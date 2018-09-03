@@ -12,14 +12,22 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
+import Title from 'components/Title';
+import Wrapper from 'components/Wrapper'
+import NavBar from 'components/NavBar'
 
 /* eslint-disable react/prefer-stateless-function */
+/* NavBar could be  <NavBar active={this.state.active} onClick={this.handleButton}/> */
+
 export default class HomePage extends React.PureComponent {
   render() {
     return (
-      <h1>
-        <FormattedMessage {...messages.header} />
-      </h1>
+    	<Wrapper>
+	      <Title>
+	        <FormattedMessage {...messages.header} />
+	      </Title>
+      </Wrapper>
+      
     );
   }
 }
