@@ -1,33 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ListItems from '../../components/ListItems';
 
-import Ul from './Ul';
-import Wrapper from './Wrapper';
-
-function List(props) {
-  const ComponentToRender = props.component;
-  let content = <div />;
-
-  // If we have items, render them
-  if (props.items) {
-    content = props.items.map(item => (
-      <ComponentToRender key={`item-${item.id}`} item={item} />
-    ));
-  } else {
-    // Otherwise render a single component
-    content = <ComponentToRender />;
-  }
-
-  return (
-    <Wrapper>
-      <Ul>{content}</Ul>
-    </Wrapper>
-  );
+const List = ({ loading, error, strings }) => {
+	let data;
+	if (strings) {
+		data = strings.map(ele => <ListItems>{ele.string}</ListItems>);
+	}
+	if (loading) {
+		data = <ListItems>Loading...</ListItems>
+	}
+	if (error) {
+		data = <ListItems>Oops, couldn't find any secrets. Better refresh!</ListItems>
+	}
+	// if (data) {
+	// 	return <ListItem>{data}</ListItem>
+	// }
+	return <ul>{data}</ul>
 }
 
 List.propTypes = {
-  component: PropTypes.func.isRequired,
-  items: PropTypes.array,
-};
+	loading: PropTypes.bool,
+	error: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
+	strings: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+}
 
 export default List;
