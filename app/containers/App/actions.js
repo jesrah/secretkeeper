@@ -19,7 +19,7 @@ import {
 	LOAD_SECRETS,
 	LOAD_SECRETS_SUCCESS,
 	LOAD_SECRETS_ERROR,
-	POST_SECRET
+	POST_SECRET_DATABASE
 } from './constants';
 
 /**
@@ -49,6 +49,6 @@ export function secretsLoadingError(error) {
 
 export function postSecretToDatabase() {
 	return {
-		type: POST_SECRET,
+		type: POST_SECRET_DATABASE,
 	}
 }

@@ -12,5 +12,5 @@
 export const LOAD_SECRETS = 'secretkeeper/App/';
 export const LOAD_SECRETS_SUCCESS = 'secretkeeper/App/LOAD_SECRETS_SUCCESS';
 export const LOAD_SECRETS_ERROR = 'secretkeeper/App/LOAD_SECRETS_ERROR';
-export const POST_SECRET = 'secretkeeper/App/POST_SECRET';
+export const POST_SECRET_DATABASE = 'secretkeeper/App/POST_SECRET_DATABASE';
 	
