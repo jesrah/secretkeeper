@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import React, { Component, PropTypes } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import HorizontalList from '../../components/HorizontalList';
 import Ul from '../../components/Ul';
 
@@ -21,19 +21,29 @@ import Ul from '../../components/Ul';
 
 // export default NavBar;
 
-const StyledLink = styled(Link)`
+const StyledLink = styled(NavLink)`
     text-decoration: none;
-    color: black;
+    color: darkseagreen;
     font-size: 1.2em;
+    padding: 1em;
 
     &:focus, &:visited, &:link, &:active {
         text-decoration: none;
     }
     &:hover {
       text-decoration: none;
-      color: darkseagreen;
+      color: darkslategray;
     }
+     &.${(props) => props.activeClassName} {
+    background-color: darkseagreen;
+    color: papayawhip;
+    font-weight: bold;
+  }
 `;
+
+// StyledLink.defaultProps = {
+//   activeClassName: 'active',
+// }
 
 export default class NavBar extends React.Component {
   render() {
@@ -42,10 +52,10 @@ export default class NavBar extends React.Component {
         <div className="Nav__right">
           <Ul className="Nav__item-wrapper">
             <HorizontalList className="Nav__item">
-              <StyledLink className="Nav__link" to="/">Share</StyledLink>
+              <StyledLink exact to="/" activeClassName="selected">Share</StyledLink>
             </HorizontalList>
             <HorizontalList className="Nav__item">
-              <StyledLink className="Nav__link" to="/read">Read</StyledLink>
+              <StyledLink to="/read" activeClassName="selected">Read</StyledLink>
             </HorizontalList>
           </Ul>
         </div>
