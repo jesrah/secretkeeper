@@ -33,10 +33,10 @@ export function loadSecrets() {
   };
 }
 
-export function secretsLoaded(strings) {
+export function secretsLoaded(secrets) {
 	return {
 		type: LOAD_SECRETS_SUCCESS,
-		strings,
+		secrets,
 	}
 }
 
