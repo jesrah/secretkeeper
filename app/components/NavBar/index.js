@@ -20,15 +20,22 @@ import { Link } from 'react-router';
 
 // export default NavBar;
 
-const NavBar = React.createClass({
+export default class NavBar extends React.Component {
   render() {
     return (
-      <div>
-        <ul>
-          <a onClick={() => history.push('Share') }>Share</a>
-          <a onClick={() => history.push('Read') }>Read</a>
-        </ul>
-      </div>
+      <nav className="Nav">
+          <div className="Nav__right">
+            <ul className="Nav__item-wrapper">
+              <li className="Nav__item">
+                <Link className="Nav__link" to="/">Share</Link>
+              </li>
+              <li className="Nav__item">
+                <Link className="Nav__link" to="/Read">Read</Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
     )
   }
-})
+}
