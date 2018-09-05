@@ -12,32 +12,34 @@
 
 import { fromJS } from 'immutable';
 
-import { LOAD_SECRETS_SUCCESS, LOAD_SECRETS, LOAD_SECRETS_ERROR, POST_SECRET_DATABASE } from './constants';
+import { LOAD_SECRETS_SUCCESS, LOAD_SECRETS, LOAD_SECRETS_ERROR } from './constants';
 
 // The initial state of the App
 const initialState = fromJS({
-  loading: false,
-  error: false,
-  currentUser: false,
-  userData: {
-    repositories: false,
+  secrets: {
+    loading: false,
+    error: false,
+    items: [],
+    load: true,
   },
 });
 
+//understand what's happening here
 function appReducer(state = initialState, action) {
   switch (action.type) {
-    case LOAD_REPOS:
+    case LOAD_SECRETS:
       return state
-        .set('loading', true)
-        .set('error', false)
-        .setIn(['userData', 'repositories'], false);
-    case LOAD_REPOS_SUCCESS:
+        .setIn(['secrets', 'loading'], true)
+        .set(['secrets', 'error'], false)
+        .set(['secrets', 'items'], false);
+    case LOAD_SECRETS_SUCCESS:
       return state
-        .setIn(['userData', 'repositories'], action.repos)
-        .set('loading', false)
-        .set('currentUser', action.username);
-    case LOAD_REPOS_ERROR:
-      return state.set('error', action.error).set('loading', false);
+        .setIn(['secrets', 'items'], action.secrets)
+        .set(['secrets', 'loading'], false);
+    case LOAD_SECRETS_ERROR:
+      return state
+        .setIn(['secrets', 'error'], action.error)
+        .setIn(['secrets', 'loading'], false);
     default:
       return state;
   }

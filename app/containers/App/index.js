@@ -16,7 +16,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import HomePage from 'containers/HomePage/Loadable';
 import ListPage from 'containers/ListPage/Loadable';
-import NavBar from '../../components/NavBar';
+import NavBar from 'components/NavBar';
 
 export default function App() {
   return (

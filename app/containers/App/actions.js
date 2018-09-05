@@ -47,7 +47,7 @@ export function secretsLoadingError(error) {
 	}
 }
 
-export function postSecretToDatabase() {
+export function postSecretDatabase() {
 	return {
 		type: POST_SECRET_DATABASE,
 	}
