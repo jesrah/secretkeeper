@@ -6,9 +6,9 @@
 
 import { SUBMIT_SECRET } from './constants';
 
-export function submitSecret(string) {
+export function submitSecret(secret) {
   return {
     type: SUBMIT_SECRET,
-    string,
+    secret,
   };
 }

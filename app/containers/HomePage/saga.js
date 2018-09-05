@@ -1,28 +1,22 @@
-import { call, put, takeEvery } from 'redux-saga/effects';
-import { LOAD_SECRETS } from 'containers/App/constants';
-import { secretsLoaded, secretsLoadingError } from 'containers/App/actions';
+import { put, select, takeEvery } from 'redux-saga/effects';
+import { makeSelectCurrentSecret } from 'containers/HomePage/selectors';
+import { POST_SECRET_DATABASE } from 'containers/App/constants';
+import post from 'utils/post';
+import { SUBMIT_SECRET } from './constants'
 
-import request from 'utils/request';
+//handle req/res for secret strings here
+//will select the secret from the store and match against action
+export function* insertSecret() {
+    const currentSecret = yield select(makeSelectCurrentSecret());
+    const requestURL = 'http://localhost:3000/secrets'
 
-export const requestURL = `http://localhost:3000/secretkeeper`;
-
-/**
- * Strings request/response handler
- */
-export function* getSecrets() {
-  try {
-    // Call our request helper (see 'utils/request')
-    const secrets = yield call(request, requestURL);
-    yield put(secretsLoaded(secrets));
-  } catch (err) {
-    yield put(secretsLoadingError(error));
-  }
+    yield post(requestURL, currentSecret);
+    yield put({ type: SUBMIT_SECRET, secret: ''});
 }
 
-/**
- * Root saga manages watcher lifecycle
- */
-export default function* secretsData() {
-  // Saga for action LOAD_SECRETS, responds with getSecrets
-  yield takeEvery(LOAD_SECRETS, getSecrets);
+//starts new insertSecret task on each dispatched PostSecretDatabase action
+
+export default function* secretSubmissions() {
+	//takeEvery(pattern, saga, ...args)
+  yield takeEvery(POST_SECRET_DATABASE, insertSecret);
 }

@@ -11,6 +11,15 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { compose } from 'redux';
+
+import injectReducer from 'utils/injectReducer';
+import reducer from './reducer';
+
+import { makeSelectCurrentSecret } from './selectors';
+
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import Title from 'components/Title';
@@ -21,10 +30,7 @@ import NavBar from 'components/NavBar';
 import { submitSecret } from './actions';
 import { postSecretDatabase} from 'containers/App/actions';
 
-/* eslint-disable react/prefer-stateless-function */
-/* NavBar could be  <NavBar active={this.state.active} onClick={this.handleButton}/> */
-
-export default class HomePage extends React.PureComponent {
+class HomePage extends React.PureComponent {
   render() {
     return (
     	<Wrapper>
@@ -32,14 +38,14 @@ export default class HomePage extends React.PureComponent {
 	        <FormattedMessage {...messages.header} />
 	        	
 	      </Title>
-	    	<form onSubmit={e => this.props.handleSubmit(e)} autoComplete="off">
+	    	<form onSubmit={e => this.props.onSubmitForm(e)} autoComplete="off">
 		    	<Input
 		    		text 
 		      	type="text"
 		      	id="input" 
-		      	name="string"
+		      	name="secret"
 		      	placeholder="&lt;press enter when done&gt;"
-		      	value={this.props.currentValue} 
+		      	value={this.props.currentSecret} 
 		      	onChange={this.props.handleChange}
 		    	/>
 	     </form>
@@ -49,12 +55,14 @@ export default class HomePage extends React.PureComponent {
 }
 
 HomePage.propTypes = {
-	handleSubmit: PropTypes.func,
+	onSubmitForm: PropTypes.func,
 	handleChange: PropTypes.func,
-	currentValue: PropTypes.string,
+	currentSecret: PropTypes.string,
 }
 
-const mapStateToProps = {};
+const mapStateToProps = createStructuredSelector({
+	currentSecret: makeSelectCurrentSecret(),
+});
 
 function mapDispatchToProps(dispatch) {
 	return {
@@ -62,13 +70,21 @@ function mapDispatchToProps(dispatch) {
 			e.preventDefault();
 			dispatch(submitSecret(e.target.value));
 		},
-		handleSubmit: e => {
-			if (e !== undefined && e.preventDefault) {
-				e.preventDefault();
-			} 
-			dispatch(postSecret);
+		onSubmitForm: e => {
+			if (e !== undefined && e.preventDefault) e.preventDefault();
+			dispatch(postSecretDatabase());
 		},
 	};
 }
 
-// const ConnectedForm = connect(null, mapDispatchToProps)(HomePage);
+const withConnect = connect(
+	mapStateToProps,
+	mapDispatchToProps,
+);
+
+const withReducer = injectReducer({ key: 'homepage', reducer });
+
+export default compose(
+  withReducer,
+  withConnect,
+)(HomePage);
