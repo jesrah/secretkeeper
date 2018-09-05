@@ -9,6 +9,6 @@ import { defineMessages } from 'react-intl';
 export default defineMessages({
   header: {
     id: 'app.containers.ListPage.header',
-    defaultMessage: 'This is ListPage container !',
+    defaultMessage: 'Let me tell you a secret.',
   },
 });

@@ -38,6 +38,8 @@ export class ListPage extends React.Component {
       error,
       secrets,
     };
+
+    console.log('listProps is', listProps)
     return (
       <div>
       <Wrapper>
@@ -53,9 +55,10 @@ export class ListPage extends React.Component {
 
 ListPage.propTypes = {
   // dispatch: PropTypes.func.isRequired,
+  //should edit the proptypes for secrets
   loading: PropTypes.bool,
   error: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
-  secrets: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  secrets: PropTypes.oneOfType([PropTypes.object, PropTypes.array, PropTypes.string]),
   loadSecrets: PropTypes.func,
 };
 
