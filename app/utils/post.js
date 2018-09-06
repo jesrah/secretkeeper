@@ -1,3 +1,5 @@
+import 'whatwg-fetch';
+
 export default function post(url = ``, secret) {
   return fetch(url, {
     method: 'POST',

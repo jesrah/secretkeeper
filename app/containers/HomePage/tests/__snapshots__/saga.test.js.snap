@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`insertSecret Saga should call the secretLoadingError action if the response errors 1`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "SELECT": Object {
+    "args": Array [],
+    "selector": [Function],
+  },
+}
+`;
+
+exports[`insertSecret Saga should call the secretLoadingError action if the response errors 2`] = `
+Promise {
+  "_a": undefined,
+  "_c": Array [],
+  "_d": false,
+  "_h": 0,
+  "_n": false,
+  "_s": 0,
+  "_v": undefined,
+}
+`;
+
+exports[`insertSecret Saga should dispatch the secretsLoaded action if it requests the data successfully 1`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "SELECT": Object {
+    "args": Array [],
+    "selector": [Function],
+  },
+}
+`;
+
+exports[`insertSecret Saga should dispatch the secretsLoaded action if it requests the data successfully 2`] = `
+Promise {
+  "_a": undefined,
+  "_c": Array [],
+  "_d": false,
+  "_h": 0,
+  "_n": false,
+  "_s": 0,
+  "_v": undefined,
+}
+`;

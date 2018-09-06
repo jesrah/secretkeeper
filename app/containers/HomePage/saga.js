@@ -1,8 +1,9 @@
 import { put, select, takeEvery } from 'redux-saga/effects';
-import { makeSelectCurrentSecret } from 'containers/HomePage/selectors';
-import { POST_SECRET_DATABASE } from 'containers/App/constants';
-import post from 'utils/post';
 import { SUBMIT_SECRET } from './constants'
+import { POST_SECRET_DATABASE } from 'containers/App/constants';
+
+import post from 'utils/post';
+import { makeSelectCurrentSecret } from 'containers/HomePage/selectors';
 
 //handle req/res for secret strings here
 //will select the secret from the store and match against action
