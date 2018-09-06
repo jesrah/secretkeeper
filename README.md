@@ -48,5 +48,5 @@ npm install jest -g
 
 Run unit tests on the HomePage container by running the following command:
 ```sh
-npm test:secrets
+npm run test:secret
 ```
