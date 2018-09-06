@@ -30,7 +30,7 @@ import NavBar from 'components/NavBar';
 import { submitSecret } from './actions';
 import { postSecretDatabase} from 'containers/App/actions';
 
-class HomePage extends React.PureComponent {
+export class HomePage extends React.PureComponent {
   render() {
     return (
     	<Wrapper>
@@ -64,10 +64,10 @@ const mapStateToProps = createStructuredSelector({
 	currentSecret: makeSelectCurrentSecret(),
 });
 
-function mapDispatchToProps(dispatch) {
+export function mapDispatchToProps(dispatch) {
 	return {
 		handleChange: e => {
-			e.preventDefault();
+			if (e !== undefined && e.preventDefault) e.preventDefault();
 			dispatch(submitSecret(e.target.value));
 		},
 		onSubmitForm: e => {
