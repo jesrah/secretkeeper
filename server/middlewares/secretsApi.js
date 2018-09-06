@@ -27,13 +27,10 @@ router.get('/', (req, res) => {
   db.collection('secrets')
   .find()
   .toArray()
-  // .then((secrets) => console.log('secrets is', JSON.stringify(secrets)));
-  // .then((secrets) => res.send(JSON.stringify(secrets)));
   .then((secrets) => res.json(secrets));
 });
 
 router.post('/', (req, res) => {
-  //need to redefine db because currently db.collection is "undefined" and "db" itself is a gigantic object. it's not accessing the mongodb methods as it should.
   if (req.body["secret"].length > 0) {
     db.collection('secrets').insert(req.body, (err, data) => {
       if (err) return console.log(err)
