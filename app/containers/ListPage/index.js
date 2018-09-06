@@ -25,9 +25,7 @@ import {
 } from 'containers/App/selectors';
 import { loadSecrets } from '../App/actions'
 
-/* eslint-disable react/prefer-stateless-function */
-//should be a PureComponent
-export class ListPage extends React.Component {
+export class ListPage extends React.PureComponent {
   componentDidMount(){
     this.props.loadSecrets();
   }
@@ -39,7 +37,6 @@ export class ListPage extends React.Component {
       secrets,
     };
 
-    console.log('listProps is', listProps)
     return (
       <div>
       <Wrapper>
@@ -58,7 +55,7 @@ ListPage.propTypes = {
   //should edit the proptypes for secrets
   loading: PropTypes.bool,
   error: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
-  secrets: PropTypes.oneOfType([PropTypes.object, PropTypes.array, PropTypes.string]),
+  secrets: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   loadSecrets: PropTypes.func,
 };
 
