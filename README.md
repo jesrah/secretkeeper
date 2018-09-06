@@ -38,6 +38,10 @@ mongod
 ```sh
 mongo 
 ```
+In the mongo shell, run the command:
+```sh
+use secretkeeper 
+```
 
 ## Testing
 
