@@ -5,19 +5,6 @@ Have you ever had a secret you just couldn't keep to yourself anymore? Secret Ke
 1. SHARE: Share a secret of your own.
 2. READ: Read secrets that have been shared by others.
 
-## Usage
-
-To start database:
-[FILL TEXT HERE ]
-
-To start the app:
-```sh
-npm start
-```
-
-To start the server:
-[FILL TEXT HERE]
-
 ## Requirements
 
 - Node (8.0 and above)
@@ -25,12 +12,39 @@ To start the server:
 - Redux
 - Redux Saga
 - Styled Components
-- [INSERT DATABASE HERE]
+- MongoDB
 - Jest
+
+## Usage
+
+-To install dependencies, first go to the root directory. Then run the command:
+
+```sh
+npm install
+```
+
+-To start the server:
+```sh
+npm start
+```
+## Database
+
+-To start the database:
+This app uses MongoDB. Go to https://docs.mongodb.com/manual/administration/install-community/ to install the latest version on the appropriate operating system. 
+
+If it's your first time starting MongoDB, follow the instructions to create the default data directory (/data/db) and set permissions. To start up the database, run the following commands in separate terminal windows:
+```sh
+mongod
+```
+&
+```sh
+mongo localhost:27017/secrets
+```
 
 ## Testing
 
-Install Jest globally:
+-To run tests:
+This app uses Jest. Install Jest globally:
 ```sh
 npm install jest -g
 ```
@@ -41,11 +55,3 @@ sudo npm install jest -g
 
 Run unit tests:
 [INSERT COMMAND HERE]
-
-### Installing Dependencies
-
-From within the root directory:
-
-```sh
-npm install
-```
